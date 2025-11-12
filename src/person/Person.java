@@ -1,11 +1,9 @@
 package person;
 
-
-
 public class Person {
-    private final String name;
-    private final String surname;
-    private final Gender gender;
+    protected final String name;
+    protected final String surname;
+    protected final Gender gender;
 
     public Person(String name, String surname, Gender gender) {
         this.name = name;
@@ -16,8 +14,12 @@ public class Person {
     public String getName() {
         return name;
     }
-
     public String getSurname() {
         return surname;
+    }
+
+    @Override
+    public String toString() {
+        return name + " " + surname;
     }
 }
