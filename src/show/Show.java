@@ -6,7 +6,6 @@ import person.Director;
 import java.util.ArrayList;
 
 public class Show {
-
     protected String title;
     protected int duration;
     protected Director director;
@@ -27,9 +26,8 @@ public class Show {
     public void printActors() {
         System.out.println();
         System.out.println("Список актеров :");
-        int count = 0;
-        for (Actor actor : actorList) {
-            System.out.println(++count + ") " + actor);
+        for (int i = 0; i < actorList.size(); i++) {
+            System.out.println((i+1) + ") " + actorList.get(i));
         }
     }
 
@@ -42,18 +40,33 @@ public class Show {
     }
 
     public void replaceActor(Actor newActor, String surname) {
-        boolean isReplace = false;
+        int countActor = countActorWithSurname(surname);
+        if (countActor == 0) {
+            System.out.println("Такого актера нет в спектакле.");
+            return;
+        }
+        if (countActor > 1) {
+            System.out.println("В этом спектакле " + countActor + " актера с такой фамилией.");
+            System.out.println("Не будем никого менять");
+            return;
+        }
         for (Actor actor : actorList) {
             if (actor.getSurname().equals(surname)) {
                 actorList.remove(actor);
                 actorList.add(newActor);
-                isReplace = true;
                 break;
             }
         }
-        if (!isReplace) {
-            System.out.println("Такого актера нет в спектакле.");
+    }
+
+    private int countActorWithSurname(String surname) {
+        int count = 0;
+        for (Actor actor : actorList) {
+            if (actor.getSurname().equals(surname)) {
+                count++;
+            }
         }
+        return count;
     }
 
     @Override

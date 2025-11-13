@@ -37,9 +37,10 @@ public class Theatre {
         regular.printDirector();
         System.out.println(regular);
 
-
+        System.out.println("*************************");
         opera.addActor(actor1);
         opera.addActor(actor2);
+        opera.replaceActor(actor3, "Сидоров" );
         opera.printActors();
         opera.addActor(actor2);
         opera.replaceActor(actor3, "Сидоров" );
